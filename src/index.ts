@@ -43,6 +43,12 @@ interface ClientMessage {
 }
 
 // ---------------------------------------------------------------------------
+// Constants
+// ---------------------------------------------------------------------------
+
+const MAX_CONNECTED_CLIENTS = 200;
+
+// ---------------------------------------------------------------------------
 // Rolling window aggregator
 // ---------------------------------------------------------------------------
 
@@ -120,6 +126,10 @@ class SignalBroadcaster {
   >();
 
   register(ws: WebSocket): void {
+    if (this.clients.size >= MAX_CONNECTED_CLIENTS) {
+      ws.close(1013, "max clients reached");
+      return;
+    }
     this.clients.set(ws, { filters: {}, connectedAt: Date.now() });
     ws.on("message", (data) => this.handleClientMessage(ws, data.toString()));
     ws.on("close", () => this.clients.delete(ws));
