@@ -248,3 +248,30 @@ main().catch((err) => {
   console.error("[fatal]", err);
   process.exit(1);
 });
+
+
+// Detection threshold configuration.
+// These control sensitivity vs. false positive tradeoff for each detector.
+export const DETECTION_THRESHOLDS = {
+  // Port scan: number of distinct destination ports from a single source
+  // within the scan window before flagging.
+  portScanMinPorts: 15,
+  portScanWindowSeconds: 60,
+
+  // Beaconing: minimum coefficient of determination (R^2) for periodic
+  // connection pattern detection.  Higher values reduce false positives
+  // but miss jittered beacons.
+  beaconingR2Threshold: 0.85,
+  beaconingMinSamples: 10,
+
+  // Volume anomaly: number of standard deviations above the rolling
+  // mean before flagging a traffic spike.
+  volumeAnomalyZScore: 3.0,
+  volumeRollingWindowMinutes: 30,
+
+  // DNS tunneling: entropy threshold for subdomain labels.
+  // Legitimate subdomains rarely exceed 3.5 bits; encoded payloads
+  // typically exceed 4.0.
+  dnsTunnelEntropyThreshold: 3.8,
+  dnsTunnelMinQueryLength: 40,
+} as const;
