@@ -274,4 +274,9 @@ export const DETECTION_THRESHOLDS = {
   // typically exceed 4.0.
   dnsTunnelEntropyThreshold: 3.8,
   dnsTunnelMinQueryLength: 40,
+
+  // Lateral movement: minimum distinct internal peers a host must reach
+  // within the window before flagging east-west scanning activity.
+  lateralMovementMinHops: 8,
+  lateralMovementWindowSeconds: 120,
 } as const;
