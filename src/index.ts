@@ -279,4 +279,9 @@ export const DETECTION_THRESHOLDS = {
   // within the window before flagging east-west scanning activity.
   lateralMovementMinHops: 8,
   lateralMovementWindowSeconds: 120,
+
+  // C2 heartbeat: implants phoning home on a fixed schedule with low jitter.
+  // Minimum interval (seconds) between connections and maximum allowed jitter.
+  c2HeartbeatMinIntervalSeconds: 30,
+  c2HeartbeatMaxJitterMs: 500,
 } as const;
