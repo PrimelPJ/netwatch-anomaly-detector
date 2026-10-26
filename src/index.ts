@@ -284,4 +284,9 @@ export const DETECTION_THRESHOLDS = {
   // Minimum interval (seconds) between connections and maximum allowed jitter.
   c2HeartbeatMinIntervalSeconds: 30,
   c2HeartbeatMaxJitterMs: 500,
+
+  // C2 beacon interval variance: maximum spread (ms) across beacon intervals
+  // within a session before the pattern is no longer considered periodic.
+  // Implants that rotate their schedule each session typically exceed 2000ms.
+  c2BeaconIntervalVarianceMs: 2_000,
 } as const;
