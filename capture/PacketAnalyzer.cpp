@@ -138,6 +138,7 @@ public:
         int         timeout_ms = 100;
         std::size_t max_flows  = 1'000'000;
         uint32_t    flow_idle_timeout_s = 300;
+        int         pcap_buffer_size_mb = 64;  // kernel ring-buffer size
     };
 
     explicit PacketAnalyzer(Config cfg)
@@ -163,6 +164,10 @@ public:
         if (!handle_) {
             std::cerr << "[pcap] open_live failed: " << errbuf << "\n";
             return false;
+        }
+
+        if (pcap_set_buffer_size(handle_, cfg_.pcap_buffer_size_mb * 1024 * 1024) != 0) {
+            std::cerr << "[pcap] set_buffer_size warning: " << pcap_geterr(handle_) << "\n";
         }
 
         // Apply BPF filter if specified
