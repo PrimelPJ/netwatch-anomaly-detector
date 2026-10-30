@@ -50,6 +50,7 @@ impl FeatureExtractor {
             window_secs: 60,
             high_risk_mccs: vec![
                 6010, 6011, 6050, // Cash/ATM
+                6051,             // Cryptocurrency exchanges
                 7995,             // Gambling
                 5912, 5122,       // Drug stores (high CNP fraud)
                 4829,             // Wire transfers
@@ -211,6 +212,14 @@ impl Default for RuleEngine {
                     id:       "ENTROPY_MERCHANT",
                     severity: 25.0,
                     evaluate: |_, features| features.entropy_score > 70.0,
+                },
+                Rule {
+                    id:       "SMALL_TXN_BURST",
+                    severity: 30.0,
+                    evaluate: |_, features| {
+                        features.txn_count_60s >= 5
+                            && features.spend_60s / features.txn_count_60s as u64 < 1_000 // avg < $10
+                    },
                 },
             ],
         }
