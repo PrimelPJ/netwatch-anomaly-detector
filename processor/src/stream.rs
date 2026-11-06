@@ -215,6 +215,13 @@ impl Default for RuleEngine {
                     evaluate: |_, features| features.entropy_score > 70.0,
                 },
                 Rule {
+                    id:       "HIGH_FRAUD_COUNTRY",
+                    severity: 30.0,
+                    evaluate: |txn, _| {
+                        matches!(txn.country_code.as_str(), "NG" | "RO" | "UA" | "BG" | "PK")
+                    },
+                },
+                Rule {
                     id:       "SMALL_TXN_BURST",
                     severity: 30.0,
                     evaluate: |_, features| {
