@@ -54,6 +54,7 @@ impl FeatureExtractor {
                 7995,             // Gambling
                 5912, 5122,       // Drug stores (high CNP fraud)
                 4829,             // Wire transfers
+                5999,             // Miscellaneous retail (elevated CNP fraud)
             ],
         }
     }
@@ -212,6 +213,13 @@ impl Default for RuleEngine {
                     id:       "ENTROPY_MERCHANT",
                     severity: 25.0,
                     evaluate: |_, features| features.entropy_score > 70.0,
+                },
+                Rule {
+                    id:       "HIGH_FRAUD_COUNTRY",
+                    severity: 30.0,
+                    evaluate: |txn, _| {
+                        matches!(txn.country_code.as_str(), "NG" | "RO" | "UA" | "BG" | "PK")
+                    },
                 },
                 Rule {
                     id:       "SMALL_TXN_BURST",
