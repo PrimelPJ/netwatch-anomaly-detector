@@ -54,6 +54,7 @@ impl FeatureExtractor {
                 7995,             // Gambling
                 5912, 5122,       // Drug stores (high CNP fraud)
                 4829,             // Wire transfers
+                5999,             // Miscellaneous retail (elevated CNP fraud)
             ],
         }
     }
