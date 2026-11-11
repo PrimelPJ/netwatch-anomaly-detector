@@ -289,4 +289,12 @@ export const DETECTION_THRESHOLDS = {
   // within a session before the pattern is no longer considered periodic.
   // Implants that rotate their schedule each session typically exceed 2000ms.
   c2BeaconIntervalVarianceMs: 2_000,
+
+  // SYN flood: fraction of packets in a window with the SYN flag set above
+  // which a host is considered to be sending or receiving a flood.
+  synFloodRatioThreshold: 0.70,
+
+  // RST storm: fraction of packets carrying RST above which a session teardown
+  // pattern is flagged as potentially adversarial (e.g. RST injection).
+  rstStormRatioThreshold: 0.40,
 } as const;
