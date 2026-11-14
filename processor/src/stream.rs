@@ -55,6 +55,10 @@ impl FeatureExtractor {
                 5912, 5122,       // Drug stores (high CNP fraud)
                 4829,             // Wire transfers
                 5999,             // Miscellaneous retail (elevated CNP fraud)
+                5947,             // Gift card merchants
+                4722,             // Travel agencies (high chargeback rate)
+                5815, 5816,       // Digital goods and media downloads
+                7372,             // Software subscriptions (elevated fraud rate)
             ],
         }
     }
