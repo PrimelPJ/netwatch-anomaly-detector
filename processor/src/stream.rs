@@ -59,6 +59,8 @@ impl FeatureExtractor {
                 4722,             // Travel agencies (high chargeback rate)
                 5815, 5816,       // Digital goods and media downloads
                 7372,             // Software subscriptions (elevated fraud rate)
+                6300, 6381, 6382, // Insurance and stored-value instruments
+                6540,             // Prepaid reloadable card top-up (high chargeback rate)
             ],
         }
     }
