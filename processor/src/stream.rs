@@ -224,7 +224,10 @@ impl Default for RuleEngine {
                     id:       "HIGH_FRAUD_COUNTRY",
                     severity: 30.0,
                     evaluate: |txn, _| {
-                        matches!(txn.country_code.as_str(), "NG" | "RO" | "UA" | "BG" | "PK")
+                        matches!(txn.country_code.as_str(),
+                            "NG" | "RO" | "UA" | "BG" | "PK"
+                            | "VN" | "ID" | "TH" | "PH" | "GH"
+                        )
                     },
                 },
                 Rule {
