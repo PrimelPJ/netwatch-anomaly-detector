@@ -327,12 +327,12 @@ int main(int argc, char* argv[]) {
 
         std::printf(
             "[flow_expired] %s:%u -> %s:%u proto=%u pkts=%lu bytes=%lu "
-            "iat_mean_us=%.1f iat_var=%.1f entropy=%.3f syn=%u rst=%u\n",
+            "iat_mean_us=%.1f iat_var=%.1f entropy=%.3f syn=%u rst=%u fin=%u\n",
             src, key.src_port, dst, key.dst_port, key.proto,
             state.packet_count, state.byte_count,
             state.iat_mean_us, std::sqrt(state.iat_variance()),
             state.payload_entropy,
-            state.syn_count, state.rst_count
+            state.syn_count, state.rst_count, state.fin_count
         );
         // In production: serialize to protobuf and send via gRPC streaming stub
     });
