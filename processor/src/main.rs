@@ -100,12 +100,15 @@ pub enum Decision {
     Pass,
 }
 
+const BLOCK_THRESHOLD: u32 = 80;
+const REVIEW_THRESHOLD: u32 = 50;
+
 impl Decision {
     pub fn from_score(score: f64) -> Self {
         match score as u32 {
-            80..=u32::MAX => Self::Block,
-            50..=79       => Self::Review,
-            _             => Self::Pass,
+            s if s >= BLOCK_THRESHOLD  => Self::Block,
+            s if s >= REVIEW_THRESHOLD => Self::Review,
+            _                          => Self::Pass,
         }
     }
 }
