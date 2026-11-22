@@ -238,6 +238,13 @@ impl Default for RuleEngine {
                             && features.spend_60s / features.txn_count_60s as u64 < 1_000 // avg < $10
                     },
                 },
+                Rule {
+                    id:       "GIFT_CARD_LOAD_BURST",
+                    severity: 35.0,
+                    evaluate: |txn, features| {
+                        txn.merchant_mcc == 5947 && features.txn_count_60s >= 3
+                    },
+                },
             ],
         }
     }
