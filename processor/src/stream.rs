@@ -61,6 +61,8 @@ impl FeatureExtractor {
                 7372,             // Software subscriptions (elevated fraud rate)
                 6300, 6381, 6382, // Insurance and stored-value instruments
                 6540,             // Prepaid reloadable card top-up (high chargeback rate)
+                6536, 6537, 6538, // Money transfer and remittance services
+                7801, 7802, 7995, // Online gambling and sports betting
             ],
         }
     }
