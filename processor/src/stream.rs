@@ -61,6 +61,8 @@ impl FeatureExtractor {
                 7372,             // Software subscriptions (elevated fraud rate)
                 6300, 6381, 6382, // Insurance and stored-value instruments
                 6540,             // Prepaid reloadable card top-up (high chargeback rate)
+                6536, 6537, 6538, // Money transfer and remittance services
+                7801, 7802, 7995, // Online gambling and sports betting
             ],
         }
     }
@@ -236,6 +238,13 @@ impl Default for RuleEngine {
                     evaluate: |_, features| {
                         features.txn_count_60s >= 5
                             && features.spend_60s / features.txn_count_60s as u64 < 1_000 // avg < $10
+                    },
+                },
+                Rule {
+                    id:       "GIFT_CARD_LOAD_BURST",
+                    severity: 35.0,
+                    evaluate: |txn, features| {
+                        txn.merchant_mcc == 5947 && features.txn_count_60s >= 3
                     },
                 },
             ],
