@@ -63,6 +63,7 @@ impl FeatureExtractor {
                 6540,             // Prepaid reloadable card top-up (high chargeback rate)
                 6536, 6537, 6538, // Money transfer and remittance services
                 7801, 7802, 7995, // Online gambling and sports betting
+                4812, 4813,       // Telephone/telegraph services and VoIP (account-takeover vector)
             ],
         }
     }
